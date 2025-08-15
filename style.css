@@ -1,0 +1,5 @@
+body { font-family: system-ui, Arial, sans-serif; background:#f6f6f6; margin:0; padding:24px; text-align:center; }
+.stage-wrap { display:inline-block; background:#fff; border:1px solid #ddd; border-radius:12px; padding:12px; }
+.panel { margin:16px auto; display:flex; gap:16px; justify-content:center; align-items:center; flex-wrap:wrap; }
+#colorPicker { width: 220px; height: 220px; }
+select { padding:8px 10px; font-size:14px; }
