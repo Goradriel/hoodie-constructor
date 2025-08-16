@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Конструктор худи GORSNOW</title>
-  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js" defer></script>
   <style>
     body {
       display: flex;
@@ -37,13 +38,17 @@
   <div id="colorPicker"></div>
 
   <div style="margin:16px 0; text-align:center;">
-  <button id="savePngBtn">Сохранить PNG</button>
+  <button id="savePngBtn" type="button">Сохранить PNG</button>
 </div>
   
   <!-- SVG c PNG тенями и зонами -->
-  <svg id="hoodie-svg" viewBox="0 0 2674 3000" xmlns="http://www.w3.org/2000/svg">
+  <svg id="hoodie-svg" 
+  viewBox="0 0 2674 3000" xmlns="http://www.w3.org/2000/svg">
     
-    
+    <rect id="bgRect"
+      x="0" y="0" width="2674" height="3000"
+      fill="#939393"
+      pointer-events="none" />
 
     <!-- Зоны (упрощённые контуры-заглушки) -->
     <path id="body" class="zone"  
@@ -77,35 +82,14 @@
     d="M1483.3,778.1c7.2,1.9,8.2,7,7.7,9.1s-7.5,11.3-7.9,24-1.1,46.4,1.2,74.2c2.3,27.8,9.9,79.8,11.1,109.2,1.2,29.4,1.5,196.2,1.5,196.2,0,0-2.8,89.9-3.1,162.8s3.3,122,1.9,128.1c-1.4,6.1-6.4,12.1-14.4,11.6s-11.9-7-12.1-9.9.8-35.3,0-49c-.8-13.8-2.6-67.4-1-118.9s6.3-116.2,5.8-147.8,1.5-119.4,1.2-144.1-2.8-53-6.5-92.6c-3.7-39.6-5.8-43.4-6.7-78.4-.9-35,.9-58.2,3.5-63.4s6.2-14.2,17.9-11.2ZM1212.5,781.2c4.2,11.3,6.2,47.5,3.7,69.9-2.5,22.5-10.1,59.4-13.1,80.1-3,20.7-6.4,70.8-6.5,94.6-.2,23.8-9,112.7-9.1,123.5s-4.9,86.1-5.3,104.5-1.4,73.8-1.6,94.3c-.2,20.6-1.8,60.6-1.9,73.3-.1,12.7-2.8,57.6-2.1,61.6s3.6,4.2,11.9,4.9,10.9-2.7,11.3-6.6,1.6-29.7,1.7-54.2c.1-24.5,2-32.5,1.5-60.1s2.1-101.2,1.9-134.7,3-66,5.2-91.3c2.3-25.3,4.3-63.1,5.3-87.4s3.2-58.3,5.3-88.5c2.1-30.2,7.8-61.3,9.9-77.4,2.1-16.1,7.1-47.2,7.6-58s-.9-38.9-2.1-46.7-3-10.6-7.9-13.4c-4.2-2.5-9.5-2.4-13.3.8-2.6,2.2-4.6,5.7-2.6,11.1Z"/>
 
 
-    <image href="shadows.png" x="0" y="0" width="2674" height="3000" 
-    style="mix-blend-mode:multiply; opacity:.65; pointer-events:none"/>
+    <!-- слой теней выше зон, но это не критично для экспорта -->
+<image id="shadowLayer"
+       href="shadows/shadow_all.png"
+       x="0" y="0" width="2674" height="3000"
+       style="mix-blend-mode:multiply; opacity:.65; pointer-events:none" />
   </svg>
 
-  <script>
-    // Инициализация color picker
-    var colorPicker = new iro.ColorPicker("#colorPicker", {
-      width: 250,
-      color: "#cccccc",
-      borderWidth: 1,
-      borderColor: "#fff"
-    });
-
-    // Текущая выбранная зона
-    let selectedZone = null;
-
-    // При клике на зону выбираем её
-    document.querySelectorAll(".zone").forEach(zone => {
-      zone.addEventListener("click", () => {
-        selectedZone = zone;
-      });
-    });
-
-    // При смене цвета перекрашиваем выбранную зону
-    colorPicker.on("color:change", function(color) {
-      if (selectedZone) {
-        selectedZone.setAttribute("fill", color.hexString);
-      }
-    });
-  </script>
+ 
+  <script src="script.js" defer></script>
 </body>
 </html>

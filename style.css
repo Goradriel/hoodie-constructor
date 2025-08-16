@@ -1,5 +1,44 @@
-body { font-family: system-ui, Arial, sans-serif; background:#f6f6f6; margin:0; padding:24px; text-align:center; }
-.stage-wrap { display:inline-block; background:#fff; border:1px solid #ddd; border-radius:12px; padding:12px; }
-.panel { margin:16px auto; display:flex; gap:16px; justify-content:center; align-items:center; flex-wrap:wrap; }
-#colorPicker { width: 220px; height: 220px; }
-select { padding:8px 10px; font-size:14px; }
+/* Базовый сброс */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Общий фон и раскладка без прокрутки */
+body {
+  background: #aaaaaa;      /* твой фон страницы */
+  display: flex;
+  align-items: center;      /* по центру по вертикали */
+  justify-content: center;  /* по центру по горизонтали */
+  height: 100vh;            /* ровно высота окна */
+  overflow: hidden;         /* без скролла и без полей */
+}
+
+/* Сам SVG без лишних отступов */
+#hoodie-svg {
+  display: block;           /* убрать inline-gap */
+}
+
+/* Десктоп: SVG во всю высоту экрана */
+min-width: 1024px {
+  #hoodie-svg {
+    height: 100vh;
+    width: auto;
+  }
+}
+
+/* Мобильные: SVG во всю ширину экрана */
+max-width: 1023px {
+  #hoodie-svg {
+    width: 100vw;
+    height: auto;
+  }
+}
+
+/* Если у тебя есть обёртки вокруг SVG — обнули их, чтобы не было полей */
+.wrapper, .stage-wrap {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
